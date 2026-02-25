@@ -4,7 +4,7 @@ pipeline {
     environment {
         REMOTE_USER = "ericdt17"
         REMOTE_HOST = "ssh-ericdt17.alwaysdata.net "
-        REMOTE_PATH = "/home/TON_USER/www/"
+        REMOTE_PATH = "/home/ericdt17/www/"
     }
 
     stages {
