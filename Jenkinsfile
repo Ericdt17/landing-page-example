@@ -23,7 +23,7 @@ pipeline {
                     passwordVariable: 'PASS'
                 )]) {
                     sh '''
-                    sshpass -p "$PASS" scp -o StrictHostKeyChecking=no -r * $USER@$REMOTE_HOST:$REMOTE_PATH
+                    sshpass -p "$PASS" scp -o StrictHostKeyChecking=no -r * ericdt17@ssh-ericdt17.alwaysdata.net:/home/ericdt17/www/
                     '''
                 }
             }
