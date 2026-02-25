@@ -1,28 +1,31 @@
 pipeline {
     agent any
 
+    environment {
+        REMOTE_USER = "TON_USER"
+        REMOTE_HOST = "TON_HOST"
+        REMOTE_PATH = "/home/TON_USER/www/"
+    }
+
     stages {
-        stage('Clone') {
-            steps {
-                echo "Cloning repository..."
-            }
-        }
 
         stage('Build') {
             steps {
-                echo "Building application..."
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo "Running tests..."
+                echo "Building..."
             }
         }
 
         stage('Deploy') {
             steps {
-                echo "Deploying application..."
+                withCredentials([usernamePassword(
+                    credentialsId: 'alwaysdata-ssh',
+                    usernameVariable: 'USER',
+                    passwordVariable: 'PASS'
+                )]) {
+                    sh '''
+                    sshpass -p "$PASS" scp -o StrictHostKeyChecking=no -r * $USER@$REMOTE_HOST:$REMOTE_PATH
+                    '''
+                }
             }
         }
     }
