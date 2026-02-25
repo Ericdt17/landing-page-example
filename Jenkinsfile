@@ -14,7 +14,18 @@ pipeline {
                 echo "Building..."
             }
         }
-
-     
+           stage('Deploy') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'alwaysdata-ssh',
+                    usernameVariable: 'USER',
+                    passwordVariable: 'PASS'
+                )]) {
+                    sh '''
+                    sshpass -p "$PASS" scp -o StrictHostKeyChecking=no -r * ericdt17@ssh-ericdt17.alwaysdata.net:/home/ericdt17/www/
+                    '''
+                }
+            }
+        }
     }
 }
