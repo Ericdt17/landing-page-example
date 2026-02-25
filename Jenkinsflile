@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        REMOTE_USER = "TON_USER"
-        REMOTE_HOST = "TON_HOST"
+        REMOTE_USER = "ericdt17"
+        REMOTE_HOST = "ssh-ericdt17.alwaysdata.net "
         REMOTE_PATH = "/home/TON_USER/www/"
     }
 
